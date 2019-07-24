@@ -11,11 +11,11 @@ app = Flask(__name__)
 
 SPOTIPY_CLIENT_ID = 'a9580eb24ac1422faf7f73bfc96522c7'
 SPOTIPY_CLIENT_SECRET = '14af1b8a0d8649a997631e2759043b79'
-SPOTIPY_REDIRECT_URI = 'https://music-app-stage.herokuapp.com/'
+SPOTIPY_REDIRECT_URI = 'http://music-app-stage.herokuapp.com/'
 SCOPE = 'user-library-read'
 CACHE = '.spotipyoauthcache'
 
-sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET,SPOTIPY_REDIRECT_URI,scope=SCOPE,cache_path=CACHE)
+sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
 
 access_token = ""
 token_info = sp_oauth.get_cached_token()
@@ -77,4 +77,4 @@ def view_single_album(id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
