@@ -4,11 +4,34 @@ from genre_filtering import filter_by_genre
 from suggest_by_genre import suggestions_by_genre
 import spotipy
 import spotipy.util as util
+from spotipy import oauth2
+from bottle import request
 
 app = Flask(__name__)
-scope = 'user-library-read'
-token = util.prompt_for_user_token('vesparion',scope,client_id='a9580eb24ac1422faf7f73bfc96522c7',client_secret='14af1b8a0d8649a997631e2759043b79',redirect_uri='https://music-app-stage.herokuapp.com/')
-spotify = spotipy.Spotify(auth=token)
+
+SPOTIPY_CLIENT_ID = 'a9580eb24ac1422faf7f73bfc96522c7'
+SPOTIPY_CLIENT_SECRET = '14af1b8a0d8649a997631e2759043b79'
+SPOTIPY_REDIRECT_URI = 'https://music-app-stage.herokuapp.com/'
+SCOPE = 'user-library-read'
+CACHE = '.spotipyoauthcache'
+
+sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET,SPOTIPY_REDIRECT_URI,scope=SCOPE,cache_path=CACHE)
+
+access_token = ""
+token_info = sp_oauth.get_cached_token()
+if token_info:
+    print("Found cached token!")
+    access_token = token_info['access_token']
+else:
+    url = request.url
+    code = sp_oauth.parse_response_code(url)
+    if code:
+        print("Found Spotify auth code in Request URL! Trying to get valid access token...")
+        token_info = sp_oauth.get_access_token(code)
+        access_token = token_info['access_token']
+if access_token:
+    print("Access token available! Trying to get user information...")
+    spotify = spotipy.Spotify(access_token)
 
 
 @app.route('/')
