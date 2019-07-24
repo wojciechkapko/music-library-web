@@ -10,18 +10,6 @@
       </nav>
 <div class="album my-3 pt-3 bg-light rounded shadow-sm">
         <div class="container">
-
-            <div class="row">
-                    <div class="col-6">
-                        <h2 class="mb-3">Album - {{ album.album_name.capitalize() }}</h2>
-                    </div>
-                    <div class="col-6 d-flex">
-                        <div class="d-flex ml-auto align-items-center">
-                                <a name="" id="" class="btn btn-primary mr-3" href="#" role="button">Listen to</a>
-                                <a name="" id="" class="btn btn-outline-secondary" href="#" role="button">Edit</a>
-                        </div>
-                    </div>
-                </div>
             <div class="row">
                 <div class="col-12">
                     <div class="row mb-5">
@@ -33,12 +21,16 @@
                                 </div>
                         </div>
                         <div class="col-8">
-                                <p>{{album.artist_name}}</p>
-                                <p>{{album.year}}</p>
-                                <p>{{album.genre}}</p>
-                                <p>{{album.duration}}</p>
+                            <h2 class="mb-3">{{ album.album_name.capitalize() }}</h2>
+                                <p>Artist: {{album.artist_name}}</p>
+                                <p>Released: {{album.year}}</p>
+                                <p>Genre: {{album.genre.capitalize()}}</p>
+                                <p>Album duration: {{album.duration}}</p>
+                                <a name="" id="" class="btn btn-primary mr-3" href="#" role="button">Listen to</a>
+                                <a name="" id="" class="btn btn-outline-secondary" href="#" role="button">Edit</a>
                         </div>
                     </div>
+                    <hr>
                 </div>
             </div>
             <div class="row">
@@ -47,6 +39,7 @@
                 </div>
                 <div class="col-12">
                             <div class="row">
+                                {% if suggestions|length > 0 %}
                                     {% for album in suggestions %}
                                     <div class="col-4">
                                             <div class="card mb-4 shadow-sm">
@@ -69,7 +62,13 @@
                                                     </div>
                                                   </div>
                                     </div>
-                                  {% endfor %}    
+                                  {% endfor %}
+                                {% else %}
+                                <div class="col-12 mb-3">
+                                    <h3>No suggestions yet...</h3>
+                                </div>
+                                
+                                {% endif %} 
                             </div>
                 </div>
             </div>
