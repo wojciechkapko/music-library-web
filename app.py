@@ -7,9 +7,9 @@ import spotipy
 import spotipy.util as util
 
 app = Flask(__name__)
-
-
-spotify = spotipy.Spotify(auth='BQCS2v1UpXuFMvglszjGExTKSCNgIyrgZt2Berhmfz-4_r3UqGCGwLlUnCY1icQ7NZ3Rpe1TS6b3O37742x5R8UDTcyuV08vqM68_r54QkGC4Et5fUPxTq6rzURdpzyRkvdhG-0hBtMv')
+scope = 'user-library-read'
+token = util.prompt_for_user_token('vesparion',scope,client_id='a9580eb24ac1422faf7f73bfc96522c7',client_secret='14af1b8a0d8649a997631e2759043b79',redirect_uri='http://127.0.0.1:5000/')
+spotify = spotipy.Spotify(auth=token)
 
 @app.route('/')
 def index():
