@@ -1,3 +1,36 @@
+html {
+  position: relative;
+  min-height: 100%;
+  background: #25254e;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: radial-gradient(ellipse at center, #25254e 0%, #0e0e21 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  line-height: 60px;
+}
+
+main {
+  padding-bottom: 150px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  background: none;
+}
+
+h1, h2, h3, .jumbotron, .btn {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .jumbotron {
   position: relative;
   background: #56CCF2;
@@ -6,7 +39,6 @@
   background: -webkit-gradient(linear, left top, right top, from(#2F80ED), to(#56CCF2));
   background: linear-gradient(to right, #2F80ED, #56CCF2);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  font-family: 'Montserrat', sans-serif;
   color: #fff;
 }
 
@@ -15,16 +47,14 @@
 }
 
 .navbar {
-  background: -webkit-gradient(linear, left top, right top, from(#904e95), to(#e96443));
-  background: linear-gradient(to right, #904e95, #e96443);
-  font-family: 'Lato', sans-serif;
+  background: none;
   font-weight: 900;
   text-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .btn {
-  font-family: 'Montserrat', sans-serif;
   font-weight: 700 !important;
+  text-shadow: 0 2px 3px #00000030;
 }
 
 .shadow-sm {
@@ -39,6 +69,13 @@
   height: 50px;
 }
 
+.navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 2rem;
+  letter-spacing: .05rem;
+}
+
 .btn-secondary {
   background-color: #914e95;
   border-color: #914e95;
@@ -51,5 +88,59 @@
 
 .cover {
   width: 100%;
+}
+
+.spotify {
+  border-radius: 2rem;
+  border-color: #1ED760;
+  background: #1ED760;
+}
+
+.card {
+  border: none;
+  color: #fff;
+}
+
+.breadcrumb, .card {
+  background: none;
+}
+
+.breadcrumb {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.breadcrumb a {
+  color: #ffffff;
+}
+
+.breadcrumb .active {
+  color: #1ed760;
+  text-shadow: 0 0 25px #1ed7606e;
+}
+
+hr {
+  border-color: #fff;
+}
+
+.shadow-lg {
+  -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5) !important;
+          box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5) !important;
+}
+
+.album a {
+  color: #fff;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.album a:hover:not(.btn) {
+  color: #1ed760;
+}
+
+.album a:active:not(.btn) {
+  -webkit-transform: translatey(10px);
+          transform: translatey(10px);
 }
 /*# sourceMappingURL=main.css.map */

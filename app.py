@@ -6,6 +6,7 @@ import spotipy
 import spotipy.util as util
 from spotipy import oauth2
 from bottle import request
+from utils import convert_ms_to_min_sec
 
 app = Flask(__name__)
 
@@ -17,21 +18,21 @@ CACHE = '.spotipyoauthcache'
 
 sp_oauth = oauth2.SpotifyOAuth(SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, scope=SCOPE, cache_path=CACHE)
 
-access_token = ""
-token_info = sp_oauth.get_cached_token()
-if token_info:
-    print("Found cached token!")
-    access_token = token_info['access_token']
-else:
-    url = request.url
-    code = sp_oauth.parse_response_code(url)
-    if code:
-        print("Found Spotify auth code in Request URL! Trying to get valid access token...")
-        token_info = sp_oauth.get_access_token(code)
+
+def get_token():
+    access_token = ""
+    token_info = sp_oauth.get_cached_token()
+    if token_info:
         access_token = token_info['access_token']
-if access_token:
-    print("Access token available! Trying to get user information...")
-    spotify = spotipy.Spotify(access_token)
+    else:
+        url = request.url
+        code = sp_oauth.parse_response_code(url)
+        if code:
+            token_info = sp_oauth.get_access_token(code)
+            access_token = token_info['access_token']
+    if access_token:
+        spotify = spotipy.Spotify(access_token)
+    return spotify
 
 
 @app.route('/')
@@ -41,7 +42,7 @@ def index():
 
 @app.route('/albums/<genre>')
 def display_albums_list(genre):
-
+    spotify = get_token()
     if genre == 'all':
         albums = view_album()
     else:
@@ -52,18 +53,29 @@ def display_albums_list(genre):
         try:
             album.image = results['albums']['items'][0]['images'][0]['url']
         except IndexError:
-            album.image = None
+            album.image = 'https://www.foot.com/wp-content/uploads/2017/06/placeholder-square.jpg'
     return render_template('albums.html', albums=albums, genre=genre)
 
 
 @app.route('/album/<id>')
 def view_single_album(id):
+    spotify = get_token()
     album = view_album(id)
     results = spotify.search(q=f'artist:{album.artist_name} album:{album.album_name}', type='album')
     try:
         album.image = results['albums']['items'][0]['images'][0]['url']
+        album.spotify_link = results['albums']['items'][0]['external_urls']['spotify']
+        album_id = results['albums']['items'][0]['id']
+        api_request = f'spotify:album:{album_id}'
+
+        tracks = spotify.album(api_request)['tracks']['items']
+        for track in tracks:
+            for key in track.keys():
+                if key == 'duration_ms':
+                    track[key] = convert_ms_to_min_sec(track[key])
+        album.tracks = tracks
     except IndexError:
-        album.image = None
+        album.image = 'https://www.foot.com/wp-content/uploads/2017/06/placeholder-square.jpg'
 
     suggestions = suggestions_by_genre(album.genre)
 
@@ -72,7 +84,7 @@ def view_single_album(id):
         try:
             suggestion.image = results['albums']['items'][0]['images'][0]['url']
         except IndexError:
-            suggestion.image = None
+            suggestion.image = 'https://www.foot.com/wp-content/uploads/2017/06/placeholder-square.jpg'
     return render_template('album.html', album=album, suggestions=suggestions)
 
 
