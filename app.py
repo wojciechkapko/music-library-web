@@ -9,7 +9,7 @@ import spotipy.util as util
 app = Flask(__name__)
 
 
-spotify = spotipy.Spotify(auth='BQDb2Cdls7QjQQbYL6kskLogvePKeYwSRO3JTzzIQXTzjDTkUykKENb9KZ2xQuCEEzjI6wuxqrhViaz0k4SRsUoG0tdviNXpG4yACvRmf6alAAuwoYzvvXEE_1Iej5SbP6XMeNp7cGtm')
+spotify = spotipy.Spotify(auth='BQCS2v1UpXuFMvglszjGExTKSCNgIyrgZt2Berhmfz-4_r3UqGCGwLlUnCY1icQ7NZ3Rpe1TS6b3O37742x5R8UDTcyuV08vqM68_r54QkGC4Et5fUPxTq6rzURdpzyRkvdhG-0hBtMv')
 
 @app.route('/')
 def index():
