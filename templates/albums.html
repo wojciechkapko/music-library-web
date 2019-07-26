@@ -6,12 +6,12 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
           <li class="breadcrumb-item"><a href="/albums/all">Albums</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{ genre.capitalize() }}</li>
+          <li class="breadcrumb-item active" aria-current="page"></li>
         </ol>
       </nav>
 <div class="card my-3 pt-3">
   <div class="container">
-      <h2 class="mb-3">Browsing {{ genre.capitalize() }} Albums</h1>
+      <!-- <h2 class="mb-3">Browsing Albums</h1> -->
     <div class="row">
       {% for album in albums %}
       <div class="col-md-3">
@@ -26,7 +26,7 @@
               <a name="view" id="" href="/album/{{ album.id }}" role="button"><div class="card-text">{{ album.album_name.capitalize() }}</div></a>
             <small class="text-muted mb-2">{{ album.artist_name.capitalize() }}</small>
             <div>
-                <a class="btn btn-outline-primary btn-sm" href="/albums/{{ album.genre }}">{{ album.genre.capitalize() }}</a>
+                <!-- <a class="btn btn-outline-primary btn-sm" href="/albums/"></a> -->
             </div>
             <div class="d-flex justify-content-between align-items-center">
             </div>
