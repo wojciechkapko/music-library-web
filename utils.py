@@ -48,9 +48,9 @@ def convert_ms_to_min_sec(millis):
 
 
 # results = spotify.search(q=f'artist:Britney Spears album:Baby one more time', type='album')
-# album_id = results['albums']['items'][0]['id']
-# api_request = f'spotify:album:{album_id}'
-# tracks = spotify.album(api_request)['tracks']['items']
-# for element in tracks:
+# album_id = results['albums']
+# #api_request = f'spotify:album:{album_id}'
+# #tracks = spotify.album(api_request)['tracks']['items']
+# #for element in tracks:
 #     # print(element)
-#     print(element)
+# print(album_id)
