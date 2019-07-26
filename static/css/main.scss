@@ -41,11 +41,45 @@ h1,h2,h3,.jumbotron,.btn{
   background: none;
   font-weight: 900;
   text-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  .navbar-brand{
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: .05rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar-brand{
+    font-size: 1.5rem!important;
+  }
+  .breadcrumb{
+    display: flex;
+    flex-direction: column;
+    .breadcrumb-item {
+      margin-bottom: .25rem;
+      &+.breadcrumb-item {
+        padding-left: 0;
+        &::before {
+          padding-right: 0;
+          content: "";
+        }
+      }
+    }
+  }
 }
 
 .btn{
   font-weight: 700!important;
   text-shadow: 0 2px 3px #00000030;
+  .btn-secondary {
+    background-color: #914e95;
+    border-color: #914e95;
+    &:hover, &:not(:disabled):not(.disabled).active, &:not(:disabled):not(.disabled):active{
+      background-color: #603363;
+      border-color: #603363;
+    }
+  }
 }
 
 .shadow-sm {
@@ -58,21 +92,6 @@ h1,h2,h3,.jumbotron,.btn{
   width: 50px;
   height: 50px;
 }
-.navbar-brand{
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
-  font-size: 2rem;
-  letter-spacing: .05rem;
-}
-
-.btn-secondary {
-  background-color: #914e95;
-  border-color: #914e95;
-  &:hover, &:not(:disabled):not(.disabled).active, &:not(:disabled):not(.disabled):active{
-    background-color: #603363;
-    border-color: #603363;
-  }
-}
 
 .cover {
   width: 100%;
@@ -81,7 +100,7 @@ h1,h2,h3,.jumbotron,.btn{
 .spotify{
   border-radius: 2rem;
   border-color: #1ED760;
-background: #1ED760;
+  background: #1ED760;
 }
 .card{
   border: none;

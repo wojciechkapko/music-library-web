@@ -12,14 +12,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                  <div class="container px-5">
+                  <div class="container px-0 px-md-5">
                       <div class="row mb-5">
-                          <div class="col-3">
+                          <div class="col-12 mb-5 col-md-6 mb-md-0 col-lg-3">
                                           <div class="bd-placeholder-img card-img-top shadow-lg" width="225" height="225">
                                                   <img class="cover rounded shadow-sm" src="{{album.image}}" alt="Image not found">
                                           </div>
                           </div>
-                          <div class="col-8">
+                          <div class="col-12 text-center col-md-6 text-md-left cl-lg-8">
                               <h2 class="mb-3">{{ album.album_name.capitalize() }}</h2>
                                   <p>Artist: {{album.artist_name}}</p>
                                   <p>Released: {{album.year}}</p>
@@ -53,7 +53,7 @@
 <div class="container px-5 mt-5">
     <div class="row">
         <div class="col-12">
-            <h2 class="mb-4">You may also like</h1>
+            <h2 class="mb-4 text-center text-md-left">You may also like</h1>
         </div>
         <div class="col-12">
                     <div class="row">

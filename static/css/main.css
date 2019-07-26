@@ -52,9 +52,51 @@ h1, h2, h3, .jumbotron, .btn {
   text-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
+.navbar .navbar-brand {
+  font-family: 'Montserrat', sans-serif;
+  color: #fff;
+  font-size: 2rem;
+  letter-spacing: .05rem;
+}
+
+@media (max-width: 400px) {
+  .navbar-brand {
+    font-size: 1.5rem !important;
+  }
+  .breadcrumb {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .breadcrumb .breadcrumb-item {
+    margin-bottom: .25rem;
+  }
+  .breadcrumb .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+  }
+  .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    padding-right: 0;
+    content: "";
+  }
+}
+
 .btn {
   font-weight: 700 !important;
   text-shadow: 0 2px 3px #00000030;
+}
+
+.btn .btn-secondary {
+  background-color: #914e95;
+  border-color: #914e95;
+}
+
+.btn .btn-secondary:hover, .btn .btn-secondary:not(:disabled):not(.disabled).active, .btn .btn-secondary:not(:disabled):not(.disabled):active {
+  background-color: #603363;
+  border-color: #603363;
 }
 
 .shadow-sm {
@@ -67,23 +109,6 @@ h1, h2, h3, .jumbotron, .btn {
   filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.6));
   width: 50px;
   height: 50px;
-}
-
-.navbar-brand {
-  font-family: 'Montserrat', sans-serif;
-  color: #fff;
-  font-size: 2rem;
-  letter-spacing: .05rem;
-}
-
-.btn-secondary {
-  background-color: #914e95;
-  border-color: #914e95;
-}
-
-.btn-secondary:hover, .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active {
-  background-color: #603363;
-  border-color: #603363;
 }
 
 .cover {
