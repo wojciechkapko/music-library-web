@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block head %}{% endblock %} 
+{% block body %}
+{% if alert is defined %}
+<div class="alert alert-{{alert_class}}" role="alert">
+    {{alert}}
+</div>
+{% endif %}
+<h1>Edit album {{album.album_name}}</h1>
+<div class="card bg-dark p-5">
+    <form class="d-flex flex-column" action="/edit/{{album.id}}" method="POST">
+        <div class="mb-3 d-flex flex-column">
+            <label for="artist_name">Artist name</label>
+            <input type="text" name="artist_name" id="artist_name" value="{{album.artist_name}}">
+            <label for="album_name">Album name</label>
+            <input type="text" name="album_name" id="album_name" value="{{album.album_name}}">
+            <label for="genre">Genre</label>
+            <input type="text" name="genre" id="genre" value="{{album.genre}}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Edit album</a>
+    </form>
+</div>
+
+{% endblock %}
